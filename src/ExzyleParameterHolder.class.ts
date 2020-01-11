@@ -106,8 +106,10 @@ export class ExzyleParameterHolder<V> {
    */
   setParameters(parameters: Map<string,V>) : void;
   setParameters(parameters: { [key: string]: V }) : void;
+  /* tslint:disable:no-any */
   setParameters(parameters: any) {
-    if (parameters instanceof Map) {
+  /* tslint:enable:no-any */
+  if (parameters instanceof Map) {
       this.parameterMap = new Map([ ...this.parameterMap, ...parameters]);
     } else {
       for( const [key, value] of Object.entries<V>(parameters)) {

@@ -20,7 +20,6 @@
  * ExzyleParameterHolder provides a base class for managing parameters.
  */
 export class ExzyleParameterHolder<V> {
-
   /**
    * Internal storage of parameters.
    */
@@ -28,7 +27,7 @@ export class ExzyleParameterHolder<V> {
 
   /**
    * Constructor accepts an initial map of parameters.
-   * @param initialParameters 
+   * @param initialParameters
    */
   constructor(initialParameters: Map<string, V> = new Map()) {
     this.parameterMap = new Map(initialParameters);
@@ -48,23 +47,28 @@ export class ExzyleParameterHolder<V> {
    * @param defaultValue A default value returned if the parameter has not been set.
    * @returns The value associated with the parameter or the defaultValue if the parameter is not set.
    */
-  getParameter(parameterName: string, defaultValue: V | undefined = undefined) : V | undefined {
-    const result = this.parameterMap.has(parameterName) ? this.parameterMap.get(parameterName) : defaultValue;
+  getParameter(
+    parameterName: string,
+    defaultValue: V | undefined = undefined
+  ): V | undefined {
+    const result = this.parameterMap.has(parameterName)
+      ? this.parameterMap.get(parameterName)
+      : defaultValue;
     return result;
   }
 
   /**
    * Retrieves an array of parameter names.
    */
-  get parameterNames() : string[] {
-    return [ ...this.parameterMap.keys() ];
+  get parameterNames(): string[] {
+    return [...this.parameterMap.keys()];
   }
 
   /**
    * Retrieves a Map of the parameters. The returned map is a shallow clone of the internal
    * parameter map store.
    */
-  get parameters() : Map<string, V> {
+  get parameters(): Map<string, V> {
     return new Map(this.parameterMap);
   }
 
@@ -72,17 +76,17 @@ export class ExzyleParameterHolder<V> {
    * Indicates if the named parameter exists.
    * @param parameterName The name of the parameter.
    */
-  hasParameter(parameterName: string) : boolean {
+  hasParameter(parameterName: string): boolean {
     return this.parameterMap.has(parameterName);
   }
 
   /**
-   * Removes the named parameter. Returns the value of the parameter if it exists, 
+   * Removes the named parameter. Returns the value of the parameter if it exists,
    * otherwise it returns undefined.
    * @param parameterName The name of the parameter.
    * @returns Previous value of the parameter or undefined if it is not set.
    */
-  removeParameter(parameterName: string) : V | undefined {
+  removeParameter(parameterName: string): V | undefined {
     if (this.parameterMap.has(parameterName)) {
       const removedValue = this.parameterMap.get(parameterName);
       this.parameterMap.delete(parameterName);
@@ -104,15 +108,15 @@ export class ExzyleParameterHolder<V> {
   /**
    * Merges in a map or keyed object of parameters.
    */
-  setParameters(parameters: Map<string,V>) : void;
-  setParameters(parameters: { [key: string]: V }) : void;
+  setParameters(parameters: Map<string, V>): void;
+  setParameters(parameters: { [key: string]: V }): void;
   /* tslint:disable:no-any */
   setParameters(parameters: any) {
-  /* tslint:enable:no-any */
-  if (parameters instanceof Map) {
-      this.parameterMap = new Map([ ...this.parameterMap, ...parameters]);
+    /* tslint:enable:no-any */
+    if (parameters instanceof Map) {
+      this.parameterMap = new Map([...this.parameterMap, ...parameters]);
     } else {
-      for( const [key, value] of Object.entries<V>(parameters)) {
+      for (const [key, value] of Object.entries<V>(parameters)) {
         this.parameterMap.set(key, value);
       }
     }

@@ -108,30 +108,6 @@ describe('ExzyleParameterHolder Class', function() {
             expect(instance.parameters.size).toBe(expectedSize);
         });
 
-        // test('#appendParameter() appending a non-array value to a non-array value parameter results in an array', function() {
-        //     instanceFixture.appendParameter('EURUSD', 'BUY');
-        //     const parameterValue = instanceFixture.getParameter('EURUSD');
-        //     expect(parameterValue).toEqual([ 'HOLD', 'BUY' ]);
-        // });
-        // test('#appendParameter() appending a non-array value to an array value parameter results in an array', function() {
-        //     instanceFixture.appendParameter('EURUSD', 'SELL');
-        //     const parameterValue = instanceFixture.getParameter('EURUSD');
-        //     expect(parameterValue).toEqual([ 'HOLD', 'BUY', 'SELL' ]);
-        // });
-        // test('#appendParameter() appending an array value to an array value parameter results in an array', function() {
-        //     instanceFixture.appendParameter('EURUSD', [ 'SELL', 'CLOSE' ]);
-        //     const parameterValue = instanceFixture.getParameter('EURUSD');
-        //     expect(parameterValue).toEqual([ 'HOLD', 'BUY', 'SELL', 'SELL', 'CLOSE' ]);
-        // });
-        // test('#appendParameter() appending a non-array value to a non existing parameter results in creating the parameter as an array', function() {
-        //     instanceFixture.appendParameter('THBUSD', 'BUY');
-        //     expect(instanceFixture.getParameter('THBUSD')).toEqual([ 'BUY' ]);
-        // });
-        // test('#appendParameter() appending an array value to a non existing parameter results in creating the parameter as an array', function() {
-        //     instanceFixture.appendParameter('CHKSEK', [ 'BUY', 'CLOSE' ]);
-        //     expect(instanceFixture.getParameter('CHKSEK')).toEqual([ 'BUY', 'CLOSE' ]);
-        // });
-
         //Keep this test to last
         test('#clearParameters() results in no parameters being held', function() {
             instanceFixture.clearParameters();

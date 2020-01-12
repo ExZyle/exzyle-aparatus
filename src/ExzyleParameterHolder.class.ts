@@ -18,6 +18,7 @@
 
 /**
  * ExzyleParameterHolder provides a base class for managing parameters.
+ * @typeparam V Generic type for paramter values.
  */
 export class ExzyleParameterHolder<V> {
   /**

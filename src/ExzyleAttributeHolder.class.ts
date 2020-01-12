@@ -91,15 +91,15 @@ export class ExzyleAttributeHolder<P, A> extends ExzyleParameterHolder<P> {
    * If no namespace is provided the default namespace will be used.
    * @param nameSpace The namespace for the attribute.
    */
-  getAttributeNames(nameSpace: string | undefined = undefined): string[] {
+  getAttributeNames(nameSpace: string | undefined = undefined): Set<string> {
     if (!nameSpace) {
       nameSpace = this.defaultNamespace;
     }
     if (this.attributeMap.has(nameSpace)) {
       const attributes = this.attributeMap.get(nameSpace);
-      return [...attributes!.keys()];
+      return new Set([...attributes!.keys()]);
     }
-    return [];
+    return new Set();
   }
 
   /**
@@ -123,7 +123,7 @@ export class ExzyleAttributeHolder<P, A> extends ExzyleParameterHolder<P> {
    * Retrieves all the attribute namespaces.
    */
   get namespaces() {
-    return [...this.attributeMap.keys()];
+    return new Set([...this.attributeMap.keys()]);
   }
 
   /**

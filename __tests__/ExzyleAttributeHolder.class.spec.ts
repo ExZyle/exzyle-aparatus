@@ -74,8 +74,8 @@ describe('ExzyleAttributeHolder Class', function() {
         });
         test('#clearAttributes() should leave only an empty default namespace', function() {
             instanceFixture.clearAttributes();
-            expect(instanceFixture.namespaces.length).toBe(1);
-            expect(instanceFixture.namespaces[0]).toBe(instanceFixture.defaultNamespace);
+            expect(instanceFixture.namespaces.size).toBe(1);
+            expect(instanceFixture.namespaces.values().next().value).toBe(instanceFixture.defaultNamespace);
         });
         test('#hasAttribute() should return appropriately across namespaces', function() {
             instanceFixture.setAttribute('truthy attribute', true);
@@ -145,22 +145,22 @@ describe('ExzyleAttributeHolder Class', function() {
             expect(previousAttributes).toBeInstanceOf(Map);
             expect(previousAttributes.size).toBe(0);
         });
-        test('#attributeNames() with no namespace should return an array of attribute names from the default namespace', function() {
+        test('#attributeNames() with no namespace should return a set of attribute names from the default namespace', function() {
             instanceFixture.setAttribute('CFD', 'enabled');
             const names = instanceFixture.getAttributeNames();
-            expect(names).toBeInstanceOf(Array);
-            expect(names).toEqual(['CFD']);
+            expect(names).toBeInstanceOf(Set);
+            expect(names).toEqual(new Set(['CFD']));
         });
-        test('#attributeNames() should return an array of attribute names from the given namespace', function() {
+        test('#attributeNames() should return a set of attribute names from the given namespace', function() {
             instanceFixture.setAttribute('ACCOUNT ID', '12345', 'FIX API');
             const names = instanceFixture.getAttributeNames('FIX API');
-            expect(names).toBeInstanceOf(Array);
-            expect(names).toEqual(['ACCOUNT ID']);
+            expect(names).toBeInstanceOf(Set);
+            expect(names).toEqual(new Set(['ACCOUNT ID']));
         });
-        test('#attributeNames() should return an empty array from a non-existent namespace', function() {
+        test('#attributeNames() should return an empty set from a non-existent namespace', function() {
             const names = instanceFixture.getAttributeNames('SWISS BANK ACCOUNTS');
-            expect(names).toBeInstanceOf(Array);
-            expect(names).toEqual([]);
+            expect(names).toBeInstanceOf(Set);
+            expect(names).toEqual(new Set([]));
         });
     });
 });

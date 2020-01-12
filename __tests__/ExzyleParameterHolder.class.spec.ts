@@ -61,7 +61,7 @@ describe('ExzyleParameterHolder Class', function() {
             expect(instanceFixture.getParameter('undefined value', expectedDefaultValue)).toBeUndefined();
         });
         test('#parameterNames returns an array of the parameter keys', function() {
-            const expectedNames = [ ...parameterFixture.keys() ];
+            const expectedNames = new Set([ ...parameterFixture.keys() ]);
             expect(instanceFixture.parameterNames).toEqual(expectedNames);
         });
         test('#parameters returns a Map<string,any> matching the initial values', function() {
@@ -94,16 +94,6 @@ describe('ExzyleParameterHolder Class', function() {
                 [ 'HK50', 'Chinese Hang Seng 50 Index']
             ]);
             const expectedSize = parameterFixture.size + extraParameters.size;
-            instance.setParameters(extraParameters);
-            expect(instance.parameters.size).toBe(expectedSize);
-        });
-        test('#setParameters() merges passed object map with existing parameters', function() {
-            const instance = new ExzyleParameterHolder(parameterFixture);
-            const extraParameters = {
-                'AUS200': 'Aussie S&P/ASX 200 Index',
-                'HK50': 'Chinese Hang Seng 50 Index'
-            };
-            const expectedSize = parameterFixture.size + Object.keys(extraParameters).length;
             instance.setParameters(extraParameters);
             expect(instance.parameters.size).toBe(expectedSize);
         });

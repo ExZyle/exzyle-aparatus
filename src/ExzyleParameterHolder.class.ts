@@ -58,10 +58,10 @@ export class ExzyleParameterHolder<V> {
   }
 
   /**
-   * Retrieves an array of parameter names.
+   * Retrieves a set of parameter names.
    */
-  get parameterNames(): string[] {
-    return [...this.parameterMap.keys()];
+  get parameterNames(): Set<string> {
+    return new Set<string>([...this.parameterMap.keys()]);
   }
 
   /**
@@ -108,17 +108,7 @@ export class ExzyleParameterHolder<V> {
   /**
    * Merges in a map or keyed object of parameters.
    */
-  setParameters(parameters: Map<string, V>): void;
-  setParameters(parameters: { [key: string]: V }): void;
-  /* tslint:disable:no-any */
-  setParameters(parameters: any) {
-    /* tslint:enable:no-any */
-    if (parameters instanceof Map) {
-      this.parameterMap = new Map([...this.parameterMap, ...parameters]);
-    } else {
-      for (const [key, value] of Object.entries<V>(parameters)) {
-        this.parameterMap.set(key, value);
-      }
-    }
+  setParameters(parameters: Map<string, V>) {
+    this.parameterMap = new Map([...this.parameterMap, ...parameters]);
   }
 }

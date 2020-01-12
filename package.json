@@ -43,7 +43,8 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "docs": "typedoc"
   },
   "devDependencies": {
     "@types/jest": "^24.0.25",
@@ -51,6 +52,7 @@
     "gts": "^1.1.2",
     "jest": "^24.9.0",
     "ts-jest": "^24.3.0",
+    "typedoc": "^0.15.8",
     "typescript": "~3.7.0"
   }
 }

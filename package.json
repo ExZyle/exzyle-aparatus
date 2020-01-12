@@ -1,6 +1,6 @@
 {
   "name": "exzyle-aparatus",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A set of utilities and tools for data storage and manipulation.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
